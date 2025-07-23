@@ -11,14 +11,17 @@
 }
 
 body {
-  display: flex; /* */
-  flex-direction: column; /* Cambiado a columna para apilar el mensaje y las flores */
-  align-items: center; /* */
-  justify-content: flex-end; /* Alinea los elementos al final (abajo) */
-  min-height: 100vh; /* */
-  background-color: var(--dark-color); /* */
-  overflow: hidden; /* */
-  perspective: 1000px; /* */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--dark-color);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  perspective: 1000px;
+  position: relative;
 }
 
 /* Estilos para el mensaje de amor */
@@ -117,8 +120,33 @@ body {
 }
 
 .flowers {
-  position: relative; /* */
-  transform: scale(0.7); /* */
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  height: auto;
+  transform: scale(1); /* Escala normal por defecto */
+  transform-origin: bottom center;
+}
+
+/* Escalar solo en pantallas grandes para estética */
+@media screen and (min-width: 768px) {
+  .flowers {
+    transform: scale(0.85);
+  }
+
+  .love-message {
+    font-size: 4vw;
+  }
+}
+
+/* Asegura que el texto no se corte en móviles */
+.message-container {
+  position: absolute;
+  top: 5vh;
+  width: 100%;
+  padding: 0 1rem;
+  text-align: center;
+  z-index: 1000;
 }
 
 .flower {
