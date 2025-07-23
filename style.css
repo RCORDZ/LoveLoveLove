@@ -1,6 +1,14 @@
-*,
-*::after,
-*::before {
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Asegura que ocupe todo el ancho de la ventana */
+    height: 100%; /* Asegura que ocupe todo el alto de la ventana */
+    overflow-x: hidden; /* Previene el desplazamiento horizontal */
+}
+
+/* El resto de tu CSS */
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -10,15 +18,15 @@
   --dark-color: #000;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%; /* Asegura que ocupe todo el ancho */
-    height: 100%; /* Asegura que ocupe todo el alto */
-    overflow-x: hidden; /* Evita el scroll horizontal no deseado */
-    /* Para prevenir problemas con la barra de direcciones en móviles, a veces se usa min-height */
-    /* min-height: 100vh; */ 
-    /* Aunque height: 100% debería funcionar si el body es hijo directo de html con height: 100% */
+body {
+  display: flex; /* */
+  flex-direction: column; /* Cambiado a columna para apilar el mensaje y las flores */
+  align-items: center; /* */
+  justify-content: flex-end; /* Alinea los elementos al final (abajo) */
+  min-height: 100vh; /* Se mantiene para asegurar que el contenido se estire si es necesario */
+  background-color: var(--dark-color); /* */
+  overflow: hidden; /* */
+  perspective: 1000px; /* */
 }
 
 /* Estilos para el mensaje de amor */
@@ -109,14 +117,13 @@ html, body {
 }
 
 .night {
-  position: absolute; /* */
-  left: 0; /* */
+  position: fixed; /* */
+  left: 50%; /* */
   top: 0; /* */
   transform: translateX(-50%); /* */
   width: 100%; /* */
   height: 100%; /* */
   filter: blur(0.1vmin); /* */
-  overflow: hidden;
   background-image: radial-gradient(ellipse at top, transparent 0%, var(--dark-color)), radial-gradient(ellipse at bottom, var(--dark-color), rgba(145, 233, 255, 0.2)), repeating-linear-gradient(220deg, black 0px, black 19px, transparent 19px, transparent 22px), repeating-linear-gradient(189deg, black 0px, black 19px, transparent 19px, transparent 22px), repeating-linear-gradient(148deg, black 0px, black 19px, transparent 19px, transparent 22px), linear-gradient(90deg, #00fffa, #f0f0f0); /* */
 }
 
