@@ -12,33 +12,30 @@
 
 body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* Centra todo el contenido verticalmente */
-  min-height: 100vh;
-  width: 100vw;
+  flex-direction: column; /* Apila el mensaje y las flores */
+  align-items: center; /* Centra horizontalmente */
+  justify-content: space-around; /* Distribuye el espacio entre los elementos */
+  min-height: 100vh; /* Asegura que ocupe toda la altura de la vista */
+  width: 100vw; /* Asegura que ocupe todo el ancho de la vista */
   background-color: var(--dark-color);
-  overflow: hidden; /* Esto es importante para que los elementos que salgan no creen barras de desplazamiento */
+  overflow: hidden; /* Importante para evitar barras de desplazamiento */
   perspective: 1000px;
-  position: relative; /* Asegura que los elementos posicionados absolutamente dentro del body se posicionen con respecto a él */
-  gap: 20px; /* Espacio entre el mensaje y las flores, aunque estén posicionados absolutamente, ayuda si no lo estuvieran */
+  position: relative; /* Base para posicionamiento absoluto de elementos internos si se necesitan */
 }
 
 /* Estilos para el mensaje de amor */
 .message-container {
-    position: absolute; /* Para posicionarlo libremente */
-    top: 5%; /* Ajusta la distancia desde la parte superior, puedes probar con 5vh o un valor fijo como 30px */
-    left: 50%;
-    transform: translateX(-50%); /* Centra horizontalmente */
+    position: relative; /* Cambiado a relativo para fluir con el flexbox del body */
     width: 90%; /* Limita el ancho para que no se pegue a los bordes */
     text-align: center;
     z-index: 1000; /* Asegura que esté por encima de todo */
-    padding: 0 10px; /* Padding horizontal para el texto */
+    padding: 20px; /* Más padding para el texto */
+    margin-top: 5vh; /* Empuja el mensaje desde la parte superior */
 }
 
 .love-message {
     font-family: 'Arial', sans-serif;
-    font-size: clamp(2rem, 8vw, 5rem); /* Ajusta los valores de clamp para una mayor adaptabilidad */
+    font-size: clamp(2.2rem, 8vw, 5rem); /* Ajusta los valores de clamp para una mayor adaptabilidad */
     color: #ff69b4;
     text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4;
     word-wrap: break-word;
@@ -92,11 +89,10 @@ body {
 }
 
 .flowers {
-  position: absolute; /* Posicionamiento absoluto para controlar su ubicación */
-  bottom: 5%; /* Ajusta la distancia desde la parte inferior, puedes probar con 5vh o un valor fijo */
-  left: 50%;
-  transform: translateX(-50%) scale(0.9); /* Centra horizontalmente y ajusta el tamaño */
-  z-index: 2; /* Para que esté por encima del fondo pero por debajo del mensaje si el mensaje tiene un z-index alto */
+  position: relative; /* Cambiado a relativo para fluir con el flexbox del body */
+  transform: scale(1.2); /* Incrementa el tamaño para que abarquen más */
+  z-index: 2; /* Para que esté por encima del fondo */
+  margin-bottom: 5vh; /* Empuja las flores desde la parte inferior */
 }
 
 .flower {
@@ -397,12 +393,12 @@ body {
 /* Media Queries para responsividad */
 @media (max-width: 768px) {
     .love-message {
-        font-size: clamp(1.8rem, 9vw, 4rem); /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+        font-size: clamp(1.8rem, 9vw, 4rem);
     }
 
     .flowers {
-        transform: translateX(-50%) scale(0.65); /* Reduce el tamaño de las flores para pantallas más pequeñas */
-        bottom: 3%; /* Ajusta un poco más la posición de las flores */
+        transform: scale(1); /* Un poco más grande para tablets y móviles */
+        margin-bottom: 3vh; /* Ajusta el margen inferior */
     }
 
     .flower__leaf {
@@ -413,11 +409,12 @@ body {
 
 @media (max-width: 480px) {
     .love-message {
-        font-size: clamp(1.5rem, 11vw, 3.5rem); /* Más ajustes para pantallas muy pequeñas */
+        font-size: clamp(1.5rem, 11vw, 3.5rem);
+        padding: 15px; /* Ajusta el padding para móviles muy pequeños */
     }
 
     .flowers {
-        transform: translateX(-50%) scale(0.5); /* Más reducción de tamaño para las flores */
-        bottom: 2%;
+        transform: scale(0.85); /* Un buen tamaño para móviles pequeños */
+        margin-bottom: 2vh; /* Ajusta el margen inferior */
     }
 }
