@@ -89,9 +89,9 @@ body {
 }
 
 .flowers {
-  position: relative; /* Cambiado a relativo para fluir con el flexbox del body */
-  transform: scale(1.5); /* Incrementa el tamaño para que abarquen más */
-  z-index: 2; /* Para que esté por encima del fondo */
+  position: relative; /* Mantener relativo para el flexbox */
+  transform: scale(2); /* Aumenta el tamaño para que sea muy visible */
+  z-index: 2; /* Por encima del fondo, por debajo del mensaje (si mensaje es 1000) */
   margin-bottom: 5vh; /* Empuja las flores desde la parte inferior */
 }
 
@@ -120,19 +120,22 @@ body {
   width: 2vmin;
   height: 2vmin;
   border-radius: 50%;
+  /* Aseguramos que la opacidad y escala inicial sean visibles */
+  opacity: 1;
+  transform: scale(1); /* Las flores deben empezar a su tamaño normal */
 }
 
 .flower__leafs--1 {
-  /* animation: blooming-flower 4s ease-in-out forwards; */ /* COMENTADO PARA PROBAR VISIBILIDAD */
-  transform: scale(1); /* Aseguramos que empiecen visibles */
+  animation: blooming-flower 4s ease-in-out forwards; /* Mantenemos la animación si queremos el efecto de crecimiento */
+  animation-delay: 0.1s; /* Un pequeño delay para ver si eso ayuda a la carga */
 }
 .flower__leafs--2 {
-  /* animation: blooming-flower 5s ease-in-out forwards; */ /* COMENTADO PARA PROBAR VISIBILIDAD */
-  transform: scale(1); /* Aseguramos que empiecen visibles */
+  animation: blooming-flower 5s ease-in-out forwards;
+  animation-delay: 0.2s;
 }
 .flower__leafs--3 {
-  /* animation: blooming-flower 3s ease-in-out forwards; */ /* COMENTADO PARA PROBAR VISIBILIDAD */
-  transform: scale(1); /* Aseguramos que empiecen visibles */
+  animation: blooming-flower 3s ease-in-out forwards;
+  animation-delay: 0.3s;
 }
 
 .flower__leaf {
@@ -277,7 +280,7 @@ body {
   animation: grow-flower-tree 3.8s linear forwards;
 }
 .long-g--6 {
-  animation: grow-flower-tree 4.6s linear forwards; /* Ajustado el delay */
+  animation: grow-flower-tree 4.6s linear forwards;
 }
 .long-g--7 {
   animation: grow-flower-tree 3.5s linear forwards;
@@ -387,12 +390,17 @@ body {
     border-radius: 1vmin;
   }
 }
-@keyframes blooming-flower { /* Esta animación necesita ser revisada si no se ven */
+@keyframes blooming-flower {
   0% {
-    transform: scale(0);
+    transform: scale(0); /* Empieza muy pequeña */
+    opacity: 0; /* Inicia invisible */
+  }
+  50% {
+    opacity: 1; /* Se vuelve visible en la mitad de la animación */
   }
   100% {
-    transform: scale(1);
+    transform: scale(1); /* Termina a su tamaño normal */
+    opacity: 1; /* Permanece visible */
   }
 }
 
@@ -403,7 +411,7 @@ body {
     }
 
     .flowers {
-        transform: scale(1.1); /* Un poco más grande para tablets y móviles */
+        transform: scale(1.5); /* Aumenta el tamaño para tablets y móviles */
         margin-bottom: 3vh; /* Ajusta el margen inferior */
     }
 
@@ -420,7 +428,7 @@ body {
     }
 
     .flowers {
-        transform: scale(0.9); /* Un buen tamaño para móviles pequeños */
+        transform: scale(1.2); /* Un buen tamaño para móviles pequeños */
         margin-bottom: 2vh; /* Ajusta el margen inferior */
     }
 }
