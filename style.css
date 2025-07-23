@@ -14,28 +14,28 @@ body {
   display: flex;
   flex-direction: column; /* Apila el mensaje y las flores */
   align-items: center; /* Centra horizontalmente */
-  justify-content: space-between; /* Distribuye el espacio entre el mensaje (arriba) y las flores (abajo) */
+  justify-content: flex-start; /* Alinea los elementos al inicio (arriba) */
   min-height: 100vh; /* Asegura que ocupe toda la altura de la vista */
   width: 100vw; /* Asegura que ocupe todo el ancho de la vista */
   background-color: var(--dark-color);
   overflow: hidden; /* Importante para evitar barras de desplazamiento */
   perspective: 1000px;
-  position: relative; /* Base para posicionamiento absoluto de elementos internos si se necesitan */
+  position: relative; /* Base para posicionamiento absoluto de elementos internos */
 }
 
 /* Estilos para el mensaje de amor */
 .message-container {
-    position: relative; /* Cambiado a relativo para fluir con el flexbox del body */
-    width: 90%; /* Limita el ancho para que no se pegue a los bordes */
+    position: relative; /* Mantenemos relativo para que el margen lo mueva */
+    width: 90%; /* Limita el ancho */
     text-align: center;
     z-index: 1000; /* Asegura que esté por encima de todo */
-    padding: 20px; /* Más padding para el texto */
-    margin-top: 10vh; /* Empuja el mensaje desde la parte superior */
+    padding: 20px;
+    margin-top: 15vh; /* Desplaza el mensaje más arriba */
 }
 
 .love-message {
     font-family: 'Arial', sans-serif;
-    font-size: clamp(2.2rem, 8vw, 5rem); /* Ajusta los valores de clamp para una mayor adaptabilidad */
+    font-size: clamp(2.2rem, 8vw, 5rem);
     color: #ff69b4;
     text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4;
     word-wrap: break-word;
@@ -89,10 +89,12 @@ body {
 }
 
 .flowers {
-  position: relative; /* Mantenemos relativo para el flexbox */
-  transform: scale(1.5); /* Tamaño para que ocupen espacio */
-  z-index: 2; /* Por encima del fondo */
-  margin-bottom: 10vh; /* Empuja las flores desde la parte inferior */
+  position: absolute; /* Cambiado a absoluto para un posicionamiento preciso */
+  bottom: 0; /* Posiciona en la parte inferior de la pantalla */
+  left: 50%; /* Centra horizontalmente */
+  transform: translateX(-50%) scale(1.8); /* Mueve el 50% de su propio ancho para centrar y aumenta el tamaño */
+  z-index: 500; /* Por encima del fondo y corazones, por debajo del mensaje */
+  /* margin-bottom: 0; Eliminamos el margin-bottom ya que 'bottom: 0' lo ancla */
 }
 
 .flower {
@@ -104,12 +106,18 @@ body {
 
 .flower--1 {
   animation: moving-flower-1 4s linear infinite;
+  left: 30%; /* Ajusta la posición para que las flores no estén todas amontonadas */
+  transform: translateX(-50%);
 }
 .flower--2 {
   animation: moving-flower-2 4s linear infinite;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .flower--3 {
   animation: moving-flower-3 4s linear infinite;
+  left: 70%; /* Ajusta la posición */
+  transform: translateX(-50%);
 }
 
 .flower__leafs {
@@ -391,7 +399,7 @@ body {
 }
 @keyframes blooming-flower {
   0% {
-    transform: scale(0.8); /* Inicia un poco más grande */
+    transform: scale(0.8); /* Inicia un poco más grande para asegurar visibilidad */
     opacity: 1; /* Inicia visible */
   }
   100% {
@@ -406,14 +414,12 @@ body {
         font-size: clamp(1.8rem, 9vw, 4rem);
     }
 
-    .flowers {
-        transform: scale(1.2);
-        margin-bottom: 8vh;
+    .message-container {
+        margin-top: 10vh; /* Ajuste para móviles */
     }
 
-    .flower__leaf {
-        width: 3vmin;
-        height: 3vmin;
+    .flowers {
+        transform: translateX(-50%) scale(1.5); /* Ajuste de tamaño para tablets y móviles */
     }
 }
 
@@ -421,11 +427,10 @@ body {
     .love-message {
         font-size: clamp(1.5rem, 11vw, 3.5rem);
         padding: 15px;
-        margin-top: 8vh;
+        margin-top: 8vh; /* Ajuste para móviles muy pequeños */
     }
 
     .flowers {
-        transform: scale(1);
-        margin-bottom: 6vh;
+        transform: translateX(-50%) scale(1.2); /* Ajuste de tamaño para móviles pequeños */
     }
 }
