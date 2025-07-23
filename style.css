@@ -12,25 +12,24 @@
 
 body {
   display: flex;
-  flex-direction: column; /* Apila el mensaje y las flores */
-  align-items: center; /* Centra horizontalmente */
-  justify-content: flex-start; /* Alinea los elementos al inicio (arriba) */
-  min-height: 100vh; /* Asegura que ocupe toda la altura de la vista */
-  width: 100vw; /* Asegura que ocupe todo el ancho de la vista */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100vw;
   background-color: var(--dark-color);
-  overflow: hidden; /* Importante para evitar barras de desplazamiento */
+  overflow: hidden;
   perspective: 1000px;
-  position: relative; /* Base para posicionamiento absoluto de elementos internos */
+  position: relative;
 }
 
-/* Estilos para el mensaje de amor */
 .message-container {
-    position: relative; /* Mantenemos relativo para que el margen lo mueva */
-    width: 90%; /* Limita el ancho */
+    position: relative;
+    width: 90%;
     text-align: center;
-    z-index: 1000; /* Asegura que esté por encima de todo */
+    z-index: 1000;
     padding: 20px;
-    margin-top: 15vh; /* Desplaza el mensaje más arriba */
+    margin-top: 20vh; /* Aumentamos el margin-top para subir el texto */
 }
 
 .love-message {
@@ -42,16 +41,15 @@ body {
     overflow-wrap: break-word;
 }
 
-/* Contenedor para los corazones que suben */
 .hearts-container {
-    position: fixed; /* Ocupa toda la pantalla */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Permite interactuar con elementos debajo */
-    z-index: 1; /* Por debajo del mensaje, pero por encima del fondo */
-    overflow: hidden; /* Oculta los corazones que se salen de la pantalla */
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
 }
 
 .heart-emoji {
@@ -76,7 +74,6 @@ body {
     }
 }
 
-
 .night {
   position: fixed;
   left: 50%;
@@ -89,12 +86,11 @@ body {
 }
 
 .flowers {
-  position: absolute; /* Cambiado a absoluto para un posicionamiento preciso */
-  bottom: 0; /* Posiciona en la parte inferior de la pantalla */
-  left: 50%; /* Centra horizontalmente */
-  transform: translateX(-50%) scale(1.8); /* Mueve el 50% de su propio ancho para centrar y aumenta el tamaño */
-  z-index: 500; /* Por encima del fondo y corazones, por debajo del mensaje */
-  /* margin-bottom: 0; Eliminamos el margin-bottom ya que 'bottom: 0' lo ancla */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scale(2.5); /* Aumentamos el scale */
+  z-index: 500;
+  margin-bottom: 15vh; /* Elevamos las flores desde la parte inferior */
 }
 
 .flower {
@@ -106,8 +102,8 @@ body {
 
 .flower--1 {
   animation: moving-flower-1 4s linear infinite;
-  left: 30%; /* Ajusta la posición para que las flores no estén todas amontonadas */
-  transform: translateX(-50%);
+  left: -30%; /* Ajusta la posición para separar las flores */
+  transform: translateX(50%);
 }
 .flower--2 {
   animation: moving-flower-2 4s linear infinite;
@@ -116,8 +112,8 @@ body {
 }
 .flower--3 {
   animation: moving-flower-3 4s linear infinite;
-  left: 70%; /* Ajusta la posición */
-  transform: translateX(-50%);
+  left: 130%; /* Ajusta la posición */
+  transform: translateX(-150%);
 }
 
 .flower__leafs {
@@ -399,38 +395,36 @@ body {
 }
 @keyframes blooming-flower {
   0% {
-    transform: scale(0.8); /* Inicia un poco más grande para asegurar visibilidad */
+    transform: scale(0.9); /* Inicia casi a su tamaño */
     opacity: 1; /* Inicia visible */
   }
   100% {
-    transform: scale(1); /* Termina a su tamaño normal */
-    opacity: 1; /* Permanece visible */
+    transform: scale(1); /* Ligero crecimiento al final */
+    opacity: 1;
   }
 }
 
-/* Media Queries para responsividad */
+/* Media Queries */
 @media (max-width: 768px) {
     .love-message {
         font-size: clamp(1.8rem, 9vw, 4rem);
-    }
-
-    .message-container {
-        margin-top: 10vh; /* Ajuste para móviles */
+        margin-top: 15vh;
     }
 
     .flowers {
-        transform: translateX(-50%) scale(1.5); /* Ajuste de tamaño para tablets y móviles */
+        transform: translateX(-50%) scale(2);
+        margin-bottom: 10vh;
     }
 }
 
 @media (max-width: 480px) {
     .love-message {
         font-size: clamp(1.5rem, 11vw, 3.5rem);
-        padding: 15px;
-        margin-top: 8vh; /* Ajuste para móviles muy pequeños */
+        margin-top: 10vh;
     }
 
     .flowers {
-        transform: translateX(-50%) scale(1.2); /* Ajuste de tamaño para móviles pequeños */
+        transform: translateX(-50%) scale(1.8);
+        margin-bottom: 8vh;
     }
 }
