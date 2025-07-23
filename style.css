@@ -14,7 +14,7 @@ body {
   display: flex;
   flex-direction: column; /* Apila el mensaje y las flores */
   align-items: center; /* Centra horizontalmente */
-  justify-content: space-around; /* Distribuye el espacio entre los elementos */
+  justify-content: space-between; /* Distribuye el espacio entre el mensaje (arriba) y las flores (abajo) */
   min-height: 100vh; /* Asegura que ocupe toda la altura de la vista */
   width: 100vw; /* Asegura que ocupe todo el ancho de la vista */
   background-color: var(--dark-color);
@@ -30,7 +30,7 @@ body {
     text-align: center;
     z-index: 1000; /* Asegura que esté por encima de todo */
     padding: 20px; /* Más padding para el texto */
-    margin-top: 5vh; /* Empuja el mensaje desde la parte superior */
+    margin-top: 10vh; /* Empuja el mensaje desde la parte superior */
 }
 
 .love-message {
@@ -89,10 +89,10 @@ body {
 }
 
 .flowers {
-  position: relative; /* Mantener relativo para el flexbox */
-  transform: scale(2); /* Aumenta el tamaño para que sea muy visible */
-  z-index: 2; /* Por encima del fondo, por debajo del mensaje (si mensaje es 1000) */
-  margin-bottom: 5vh; /* Empuja las flores desde la parte inferior */
+  position: relative; /* Mantenemos relativo para el flexbox */
+  transform: scale(1.5); /* Tamaño para que ocupen espacio */
+  z-index: 2; /* Por encima del fondo */
+  margin-bottom: 10vh; /* Empuja las flores desde la parte inferior */
 }
 
 .flower {
@@ -120,14 +120,13 @@ body {
   width: 2vmin;
   height: 2vmin;
   border-radius: 50%;
-  /* Aseguramos que la opacidad y escala inicial sean visibles */
-  opacity: 1;
-  transform: scale(1); /* Las flores deben empezar a su tamaño normal */
+  opacity: 1; /* Aseguramos visibilidad inicial */
+  transform: scale(1); /* Aseguramos tamaño inicial */
 }
 
 .flower__leafs--1 {
-  animation: blooming-flower 4s ease-in-out forwards; /* Mantenemos la animación si queremos el efecto de crecimiento */
-  animation-delay: 0.1s; /* Un pequeño delay para ver si eso ayuda a la carga */
+  animation: blooming-flower 4s ease-in-out forwards;
+  animation-delay: 0.1s;
 }
 .flower__leafs--2 {
   animation: blooming-flower 5s ease-in-out forwards;
@@ -392,11 +391,8 @@ body {
 }
 @keyframes blooming-flower {
   0% {
-    transform: scale(0); /* Empieza muy pequeña */
-    opacity: 0; /* Inicia invisible */
-  }
-  50% {
-    opacity: 1; /* Se vuelve visible en la mitad de la animación */
+    transform: scale(0.8); /* Inicia un poco más grande */
+    opacity: 1; /* Inicia visible */
   }
   100% {
     transform: scale(1); /* Termina a su tamaño normal */
@@ -411,8 +407,8 @@ body {
     }
 
     .flowers {
-        transform: scale(1.5); /* Aumenta el tamaño para tablets y móviles */
-        margin-bottom: 3vh; /* Ajusta el margen inferior */
+        transform: scale(1.2);
+        margin-bottom: 8vh;
     }
 
     .flower__leaf {
@@ -424,11 +420,12 @@ body {
 @media (max-width: 480px) {
     .love-message {
         font-size: clamp(1.5rem, 11vw, 3.5rem);
-        padding: 15px; /* Ajusta el padding para móviles muy pequeños */
+        padding: 15px;
+        margin-top: 8vh;
     }
 
     .flowers {
-        transform: scale(1.2); /* Un buen tamaño para móviles pequeños */
-        margin-bottom: 2vh; /* Ajusta el margen inferior */
+        transform: scale(1);
+        margin-bottom: 6vh;
     }
 }
