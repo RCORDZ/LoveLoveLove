@@ -11,101 +11,98 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column; /* Apila el mensaje y las flores */
-  align-items: center; /* Centra horizontalmente */
-  justify-content: space-between; /* Distribuye el espacio entre el mensaje (arriba) y las flores (abajo) */
-  min-height: 100vh; /* Asegura que ocupe toda la altura de la vista */
-  width: 100vw; /* Asegura que ocupe todo el ancho de la vista */
-  background-color: var(--dark-color);
-  overflow: hidden; /* Importante para evitar barras de desplazamiento */
-  perspective: 1000px;
-  position: relative; /* Base para posicionamiento absoluto de elementos internos si se necesitan */
+  display: flex; /* */
+  flex-direction: column; /* Cambiado a columna para apilar el mensaje y las flores */
+  align-items: center; /* */
+  justify-content: flex-end; /* Alinea los elementos al final (abajo) */
+  min-height: 100vh; /* */
+  background-color: var(--dark-color); /* */
+  overflow: hidden; /* */
+  perspective: 1000px; /* */
 }
 
 /* Estilos para el mensaje de amor */
 .message-container {
-    position: relative; /* Cambiado a relativo para fluir con el flexbox del body */
-    width: 90%; /* Limita el ancho para que no se pegue a los bordes */
+    position: absolute; /* Para posicionarlo libremente */
+    top: 10vh; /* Ajusta la distancia desde la parte superior */
+    width: 100%;
     text-align: center;
     z-index: 1000; /* Asegura que esté por encima de todo */
-    padding: 20px; /* Más padding para el texto */
-    margin-top: 10vh; /* Empuja el mensaje desde la parte superior */
 }
 
 .love-message {
-    font-family: 'Arial', sans-serif;
-    font-size: clamp(2.2rem, 8vw, 5rem); /* Ajusta los valores de clamp para una mayor adaptabilidad */
-    color: #ff69b4;
-    text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    font-family: 'Arial', sans-serif; /* Puedes cambiar la fuente si quieres */
+    font-size: 5vw; /* Tamaño de fuente responsivo */
+    color: #ff69b4; /* Un color rosa bonito */
+    text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4; /* Efecto de brillo */
     opacity: 0; /* Inicialmente oculto */
     transform: scale(0.8); /* Inicialmente más pequeño */
     animation: fadeInAndPulse 3s forwards, subtlePulse 2s infinite 3s; /* Animación de aparecer y luego pulsar sutilmente */
     animation-delay: 1s; /* Retraso antes de que empiece la animación principal */
 }
 
-/* Contenedor para los corazones que suben */
-.hearts-container {
-    position: fixed; /* Ocupa toda la pantalla */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Permite interactuar con elementos debajo */
-    z-index: 1; /* Por debajo del mensaje, pero por encima del fondo */
-    overflow: hidden; /* Oculta los corazones que se salen de la pantalla */
-}
-
-.heart-emoji {
-    position: absolute;
-    font-size: 3vmin;
-    animation: floatUp 5s ease-in forwards;
-    opacity: 0;
-    color: #ff69b4;
-}
-
 /* Nueva animación para el mensaje: aparece y se mantiene con un pulso sutil */
 @keyframes fadeInAndPulse {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* Animación sutil de pulso para el mensaje que se mantiene */
 @keyframes subtlePulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02); /* Ligeramente más grande */
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02); /* Ligeramente más grande */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* Estilos para los corazones aleatorios */
+.hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Asegura que los corazones no se salgan del body */
+    pointer-events: none; /* Permite hacer clic a través de los corazones */
+    z-index: 500; /* Por encima de las flores pero debajo del mensaje */
+}
+
+.heart-emoji {
+    position: absolute;
+    font-size: 3vw; /* Tamaño responsivo del corazón */
+    color: #ff69b4; /* Color rosa del corazón */
+    opacity: 0;
+    pointer-events: none; /* Para que no interfieran con la interacción */
+    animation: floatHeart 6s ease-out forwards; /* Animación de flotar y desvanecerse */
 }
 
 /* Animación para los corazones */
-@keyframes floatUp {
+@keyframes floatHeart {
     0% {
         transform: translateY(0) scale(0.5);
         opacity: 0;
     }
-    50% {
-        opacity: 1;
+    20% {
+        opacity: 0.8;
+        transform: translateY(-20vh) scale(1);
     }
     100% {
-        transform: translateY(-100vh) scale(1.5);
+        transform: translateY(-100vh) scale(0.8);
         opacity: 0;
     }
 }
-
 
 .night {
   position: fixed; /* */
@@ -120,9 +117,7 @@ body {
 
 .flowers {
   position: relative; /* */
-  transform: scale(1.5); /* Tamaño para que ocupen espacio */
-  z-index: 2; /* Por encima del fondo */
-  margin-bottom: 10vh; /* Empuja las flores desde la parte inferior */
+  transform: scale(0.7); /* */
 }
 
 .flower {
@@ -239,7 +234,7 @@ body {
   transform: translate(-10%, 1%) rotateY(40deg) rotateX(-50deg); /* */
 }
 .flower__leaf--2 {
-  transform: translate(-50%, -4%) rotateX(0deg); /* Corrección: pétalo central recto */
+  transform: translate(-50%, -4%) rotateX(40deg); /* */
 }
 .flower__leaf--3 {
   transform: translate(-90%, 0%) rotateY(45deg) rotateX(50deg); /* */
@@ -252,6 +247,8 @@ body {
   background-image: linear-gradient(to top, #ff69b4, #ffafcc); /* Changed */
   z-index: 1; /* */
   opacity: 0.8; /* */
+  /* El transform del CSS 2 se añade aquí */
+  transform: translate(0%, 18%) rotateX(70deg) rotate(-43deg);
 }
 .flower__white-circle {
   position: absolute; /* */
@@ -659,11 +656,6 @@ body {
   transform: rotateY(-180deg) scale(0.7) !important; /* */
   animation: flower__g-front__leaf-left-ans-2 1s 4.6s ease-in backwards !important; /* */
 }
-@keyframes flower__g-front__leaf-left-ans-2 {
-  0% {
-    transform: rotateY(-180deg) scale(0); /* */
-  }
-}
 .flower__g-front__leaf-wrapper--3 {
   top: -3vmin; /* */
   animation: flower__g-front__leaf-ans 1s 4.6s ease-in backwards; /* */
@@ -672,6 +664,11 @@ body {
   top: -3vmin; /* */
   transform: rotateY(-180deg) scale(0.9) !important; /* */
   animation: flower__g-front__leaf-left-ans-2 1s 4.6s ease-in backwards !important; /* */
+}
+@keyframes flower__g-front__leaf-left-ans-2 {
+  0% {
+    transform: rotateY(-180deg) scale(0); /* */
+  }
 }
 .flower__g-front__leaf-wrapper--5, .flower__g-front__leaf-wrapper--6 {
   top: 2vmin; /* */
@@ -1071,34 +1068,4 @@ body {
 }
 .not-loaded * {
   animation-play-state: paused !important; /* */
-}
-
-/* Media Queries para responsividad */
-@media (max-width: 768px) {
-    .love-message {
-        font-size: clamp(1.8rem, 9vw, 4rem);
-    }
-
-    .flowers {
-        transform: scale(1.2);
-        margin-bottom: 8vh;
-    }
-
-    .flower__leaf {
-        width: 3vmin;
-        height: 3vmin;
-    }
-}
-
-@media (max-width: 480px) {
-    .love-message {
-        font-size: clamp(1.5rem, 11vw, 3.5rem);
-        padding: 15px;
-        margin-top: 8vh;
-    }
-
-    .flowers {
-        transform: scale(1);
-        margin-bottom: 6vh;
-    }
 }
