@@ -90,7 +90,7 @@ body {
 
 .flowers {
   position: relative; /* Cambiado a relativo para fluir con el flexbox del body */
-  transform: scale(1.2); /* Incrementa el tamaño para que abarquen más */
+  transform: scale(1.5); /* Incrementa el tamaño para que abarquen más */
   z-index: 2; /* Para que esté por encima del fondo */
   margin-bottom: 5vh; /* Empuja las flores desde la parte inferior */
 }
@@ -123,13 +123,16 @@ body {
 }
 
 .flower__leafs--1 {
-  animation: blooming-flower 4s ease-in-out forwards;
+  /* animation: blooming-flower 4s ease-in-out forwards; */ /* COMENTADO PARA PROBAR VISIBILIDAD */
+  transform: scale(1); /* Aseguramos que empiecen visibles */
 }
 .flower__leafs--2 {
-  animation: blooming-flower 5s ease-in-out forwards;
+  /* animation: blooming-flower 5s ease-in-out forwards; */ /* COMENTADO PARA PROBAR VISIBILIDAD */
+  transform: scale(1); /* Aseguramos que empiecen visibles */
 }
 .flower__leafs--3 {
-  animation: blooming-flower 3s ease-in-out forwards;
+  /* animation: blooming-flower 3s ease-in-out forwards; */ /* COMENTADO PARA PROBAR VISIBILIDAD */
+  transform: scale(1); /* Aseguramos que empiecen visibles */
 }
 
 .flower__leaf {
@@ -274,7 +277,7 @@ body {
   animation: grow-flower-tree 3.8s linear forwards;
 }
 .long-g--6 {
-  animation: grow-flower-tree 4.5s linear forwards;
+  animation: grow-flower-tree 4.6s linear forwards; /* Ajustado el delay */
 }
 .long-g--7 {
   animation: grow-flower-tree 3.5s linear forwards;
@@ -384,9 +387,12 @@ body {
     border-radius: 1vmin;
   }
 }
-@keyframes blooming-flower {
+@keyframes blooming-flower { /* Esta animación necesita ser revisada si no se ven */
   0% {
     transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -397,7 +403,7 @@ body {
     }
 
     .flowers {
-        transform: scale(1); /* Un poco más grande para tablets y móviles */
+        transform: scale(1.1); /* Un poco más grande para tablets y móviles */
         margin-bottom: 3vh; /* Ajusta el margen inferior */
     }
 
@@ -414,7 +420,7 @@ body {
     }
 
     .flowers {
-        transform: scale(0.85); /* Un buen tamaño para móviles pequeños */
+        transform: scale(0.9); /* Un buen tamaño para móviles pequeños */
         margin-bottom: 2vh; /* Ajusta el margen inferior */
     }
 }
