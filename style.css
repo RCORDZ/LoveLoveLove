@@ -87,7 +87,6 @@ body {
     opacity: 0;
     pointer-events: none; /* Para que no interfieran con la interacción */
     animation: floatHeart 6s ease-out forwards; /* Animación de flotar y desvanecerse */
-    animation-delay: 7s; /* Retraso para que los corazones aparezcan después de 7 segundos */
 }
 
 /* Animación para los corazones */
@@ -402,7 +401,6 @@ body {
   width: var(--line-w); /* */
   height: 25vmin; /* */
   background-image: linear-gradient(to top, transparent, var(--c)); /* */
-  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5); /* */
 }
 .flower__grass__leaf {
   --size: 10vmin; /* */
@@ -984,13 +982,16 @@ mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important; /*
   50% {
     opacity: 1; /* */
     transform: translateY(-15vmin) translateX(2vmin); /* */
+    filter: blur(0.2vmin); /* */
   }
   75% {
     transform: translateY(-20vmin) translateX(-2vmin); /* */
+    filter: blur(0.2vmin); /* */
   }
   100% {
     transform: translateY(-30vmin); /* */
     opacity: 0; /* */
+    filter: blur(1vmin); /* */
   }
 }
 @keyframes moving-flower-1 {
